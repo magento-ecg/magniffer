@@ -19,7 +19,9 @@
         "symfony/console": ">=2.2.0"
     },
     "autoload": {
-        "psr-0": { "Ecg\\Magniffer": "" },
+        "psr-0": {
+            "Ecg\\Magniffer": ""
+        }
     },
     "target-dir": "Ecg/Magniffer",
     "bin": [
