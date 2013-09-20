@@ -1,0 +1,74 @@
+-
+  message   : Data Handling: SQL Queries Within a Loop
+  xpath     : >
+    //*[
+      name()="node:Stmt_Foreach" or
+      name()="node:Stmt_Do" or
+      name()="node:Stmt_For" or
+      name()="node:Stmt_While"
+    ]//node:Expr_MethodCall/subNode:name[
+      scalar:string="load" or
+      scalar:string="save" or
+      scalar:string="delete" or
+      scalar:string="getFirstItem" or
+      scalar:string="getChildrenIds" or
+      scalar:string="getParentIdsByChild" or
+      scalar:string="getEditableAttributes" or
+      scalar:string="getUsedProductAttributeIds" or
+      scalar:string="getUsedProductAttributes" or
+      scalar:string="getConfigurableAttributes" or
+      scalar:string="getConfigurableAttributesAsArray" or
+      scalar:string="getConfigurableAttributeCollection" or
+      scalar:string="getUsedProductIds" or
+      scalar:string="getUsedProducts" or
+      scalar:string="getUsedProductCollection" or
+      scalar:string="getProductByAttributes" or
+      scalar:string="getSelectedAttributesInfo" or
+      scalar:string="getOrderOptions" or
+      scalar:string="getConfigurableOptions" or
+      scalar:string="getAssociatedProducts" or
+      scalar:string="getAssociatedProductIds" or
+      scalar:string="getAssociatedProductCollection" or
+      scalar:string="getProductsToPurchaseByReqGroups" or
+      scalar:string="getIdBySku"
+    ]
+  inspector : php
+-
+  message   : Data Handling: Not Limiting Collection Load Result
+  xpath     : >
+    //node:Expr_MethodCall/subNode:name[
+        scalar:string="getFirstItem"
+        and count(./ancestor::node:Expr_MethodCall[1]/descendant::node:Expr_MethodCall/subNode:name[
+          scalar:string = "limit" or
+          scalar:string = "setPageSize" or
+          scalar:string = "setPage"])
+        = 0
+    ]
+  inspector : php
+-
+  message   : Empty Entities: Empty Class
+  xpath     : //node:Stmt_Class[count(subNode:stmts/scalar:array/*) = 0]/subNode:name/scalar:string
+  inspector : php
+-
+  message   : Empty Entities: Empty Method
+  xpath     : //node:Stmt_ClassMethod[count(subNode:stmts/scalar:array/*) = 0]/subNode:name/scalar:string
+  inspector : php
+-
+  message   : Expression Issues: Expression is Always True
+  xpath     : >
+    //node:Stmt_If[
+       contains(subNode:cond, node:Expr_Variable) and count(subNode:cond) = 1
+    ]/subNode:cond/node:Expr_Variable/subNode:name/scalar:string[
+      ancestor::node:Stmt_ClassMethod/descendant::node:Expr_Assign[
+        descendant::node:Expr_StaticCall/subNode:name/scalar:string="getModel"
+      ]/subNode:var/node:Expr_Variable/subNode:name/scalar:string = text() and
+      (
+        ancestor::node:Stmt_ClassMethod/descendant::node:Expr_Assign[
+          descendant::node:Expr_MethodCall/subNode:name/scalar:string="load"
+        ]/subNode:var/node:Expr_Variable/subNode:name/scalar:string = text() or
+        ancestor::node:Stmt_ClassMethod/descendant::node:Expr_MethodCall[
+          subNode:name/scalar:string="load"
+        ]/subNode:var/node:Expr_Variable/subNode:name/scalar:string = text()
+      )
+    ]
+  inspector : php

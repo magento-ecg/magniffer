@@ -1,0 +1,35 @@
+-
+  message   : Security Issues: Empty Password in Configuration File
+  xpath     : //password[translate(normalize-space(.), ' ', '') = '']
+  inspector : xml
+-
+  message   : Event Handling: Handling Overly Broad Event
+  xpath     : >
+    //events/*[
+      name()="controller_action_layout_render_before" or
+      name()="controller_action_postdispatch" or
+      name()="controller_action_predispatch" or
+      name()="core_abstract_load_after" or
+      name()="core_abstract_save_after" or
+      name()="core_block_abstract_prepare_layout_after" or
+      name()="core_block_abstract_prepare_layout_before" or
+      name()="core_block_abstract_to_html_after" or
+      name()="core_block_abstract_to_html_before" or
+      name()="core_collection_abstract_load_after" or
+      name()="core_collection_abstract_load_before" or
+      name()="core_layout_block_create_after" or
+      name()="core_session_abstract_clear_messages" or
+      name()="eav_collection_abstract_load_before" or
+      name()="model_load_after" or
+      name()="model_save_after" or
+      name()="resource_get_tablename"
+    ]
+  inspector : xml
+-
+  message   : Event Handling: Use of Global Event
+  xpath     : //global/events
+  inspector : xml
+-
+  message   : Magento Misconfiguration: Configuration not in adminhtml.xml
+  xpath     : //*[name() = "acl" or name() = "menu"]
+  inspector : xml
