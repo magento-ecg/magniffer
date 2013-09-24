@@ -55,12 +55,12 @@ class Xml extends Inspector
         $this->domXpath = new DOMXPath($this->dom);
         foreach ($this->patterns as $pattern) {
             foreach ($this->domXpath->query($pattern['xpath']) as $node) {
-                $this->report->issues[$this->file->getRealPath()] = array(
+                $this->report->addIssue($this->file->getRealPath(), array(
                     'line'      => $node->getLineNo(),
                     'source'    => $node->C14N(),
                     'message'   => $pattern['message'],
                     'inspector' => get_class($this)
-                );
+                ));
             }
         }
         return $this;

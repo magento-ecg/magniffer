@@ -28,8 +28,16 @@ class Report
         $this->config['displayed-columns'] = array(
             'message' => 'Message',
             'line'    => 'Line',
-            'source'  => 'Source',
         );
+    }
+
+    /**
+     * @param $file
+     * @param $data
+     */
+    public function addIssue($file, $data)
+    {
+        $this->issues[$file][] = $data;
     }
 
     /**

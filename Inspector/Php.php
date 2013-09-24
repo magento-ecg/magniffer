@@ -128,7 +128,7 @@ class Php extends Inspector
         $this->domXpath = new DOMXPath($this->dom);
         foreach ($this->patterns as $pattern) {
             foreach ($this->simpleXml->xpath($pattern['xpath']) as $node) {
-                $this->report->issues[$this->file->getRealPath()][] = $this->prepareIssue($pattern['xpath'], $node, $pattern);
+                $this->report->addIssue($this->file->getRealPath(), $this->prepareIssue($pattern['xpath'], $node, $pattern));
             }
         }
         return $this;
