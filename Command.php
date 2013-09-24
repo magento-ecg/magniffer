@@ -11,7 +11,7 @@ use Ecg\Magniffer\Inspector\Xml as InspectorXml,
     Symfony\Component\Console\Output\OutputInterface,
     Symfony\Component\Finder\Finder,
     SplFileInfo,
-    Symfony\Component\Yaml\Yaml;;
+    Symfony\Component\Yaml\Yaml;
 
 class Command extends SymfonyCommand
 {
@@ -71,6 +71,6 @@ class Command extends SymfonyCommand
             ->addInspector(new InspectorPhp($patterns['php'], $report))
             ->runInspection();
 
-        $report->output();
+        $report->render($output);
     }
 }

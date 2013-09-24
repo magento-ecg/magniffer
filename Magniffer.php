@@ -39,7 +39,6 @@ class Magniffer
      */
     public function runInspection()
     {
-        $time_start = microtime(true);
         /** @var Inspector $inspector */
         foreach ($this->finder as $file) {
             foreach ($this->inspectors as $inspector) {
@@ -49,9 +48,5 @@ class Magniffer
                 }
             }
         }
-        $time_end = microtime(true);
-        $time = $time_end - $time_start;
-
-        echo "Did in $time seconds\n";
     }
 }

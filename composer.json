@@ -16,7 +16,8 @@
     "require": {
         "php": ">=5.4",
         "nikic/php-parser": ">=0.9",
-        "symfony/console": ">=2.2.0"
+        "symfony/console": ">=2.2",
+        "symfony/finder": ">=2.4"
     },
     "autoload": {
         "psr-0": {
@@ -25,6 +26,6 @@
     },
     "target-dir": "Ecg/Magniffer",
     "bin": [
-        "composer/bin/mgf"
+        "bin/mgf"
     ]
 }

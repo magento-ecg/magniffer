@@ -68,7 +68,6 @@ class Php extends Inspector
     protected function prepareIssue($xpath, SimpleXMLElement $node, array $pattern)
     {
         $issue = array(
-            'location'  => $this->file->getRealPath(),
             'message'   => $pattern['message'],
             'inspector' => get_class($this)
         );
@@ -107,6 +106,7 @@ class Php extends Inspector
                 array('...', trim($this->contentArray[$issue['parent_end'] - 1]))
             );
         }
+        $issue['source'] = implode('', $issue['source']);
         return $issue;
     }
 
@@ -128,7 +128,7 @@ class Php extends Inspector
         $this->domXpath = new DOMXPath($this->dom);
         foreach ($this->patterns as $pattern) {
             foreach ($this->simpleXml->xpath($pattern['xpath']) as $node) {
-                $this->report->issues[] = $this->prepareIssue($pattern['xpath'], $node, $pattern);
+                $this->report->issues[$this->file->getRealPath()][] = $this->prepareIssue($pattern['xpath'], $node, $pattern);
             }
         }
         return $this;
