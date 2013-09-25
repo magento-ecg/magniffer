@@ -1,6 +1,6 @@
 {
     "name": "magento-ecg/magniffer",
-    "description": "An extremely extendable, XPath driven, static code analysis tool for Magento, built on the top of PHP-Parser library.",
+    "description": "An extendable, XPath driven, static code analysis tool for Magento, built on the top of PHP-Parser library.",
     "homepage": "https://github.com/magento-ecg/magniffer",
     "license": "MIT",
     "authors": [
@@ -15,9 +15,9 @@
     },
     "require": {
         "php": ">=5.4",
-        "nikic/php-parser": ">=0.9",
-        "symfony/console": ">=2.2",
-        "symfony/finder": ">=2.4"
+        "nikic/php-parser": "0.9.*@dev",
+        "symfony/console": "2.4.*@dev",
+        "symfony/finder": "2.4.*@dev"
     },
     "autoload": {
         "psr-0": {
