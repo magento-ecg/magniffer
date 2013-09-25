@@ -1,7 +1,7 @@
 #!/usr/bin/env php
 <?php
 
-require '../../../../../../vendor/autoload.php';
+require '../../vendor/autoload.php';
 
 use Ecg\Magniffer\Application;
 
