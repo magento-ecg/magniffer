@@ -21,6 +21,9 @@
         "symfony/yaml": "2.4.*@dev"
     },
     "autoload": {
+        "classmap": [
+            "src/"
+        ],
         "psr-0": {
             "Ecg\\Magniffer": ""
         }
