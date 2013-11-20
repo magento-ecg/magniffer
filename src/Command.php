@@ -20,7 +20,7 @@ class Command extends SymfonyCommand
         $this->setName('mgf')
             ->setDescription('Magniffer Code Inspection Tool')
             ->addArgument('path', InputArgument::REQUIRED, 'Path to code')
-            ->addOption('patterns-dir', null, InputOption::VALUE_OPTIONAL, 'Path to patterns directory', __DIR__ . DIRECTORY_SEPARATOR . 'patterns');
+            ->addOption('patterns-dir', null, InputOption::VALUE_OPTIONAL, 'Path to patterns directory', __DIR__ . '/../' . 'patterns');
     }
 
     /**
