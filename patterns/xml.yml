@@ -1,6 +1,9 @@
 -
   message   : Security Issues: Empty Password in Configuration File
-  xpath     : //password[translate(normalize-space(.), ' ', '') = '']
+  xpath     : >
+    //*[name()="password" or name()="pwd"][translate(normalize-space(.), ' ', '') = ''] |
+    //*[@password[translate(normalize-space(.), ' ', '') = '']] |
+    //*[@pwd[translate(normalize-space(.), ' ', '') = '']]
   inspector : xml
 -
   message   : Event Handling: Handling Overly Broad Event
