@@ -3,13 +3,14 @@
 namespace Ecg\Magniffer\Inspector;
 
 use Ecg\Magniffer\Inspector,
+    Ecg\Magniffer\Exception\InvalidXpathException,
     Ecg\Magniffer\Report,
     DOMDocument,
     DOMXPath,
     PHPParser_Lexer,
     PHPParser_Parser,
-    PHPParser_Serializer_XML;
-use SimpleXMLElement;
+    PHPParser_Serializer_XML,
+    SimpleXMLElement;
 
 class Php extends Inspector
 {
@@ -121,13 +122,18 @@ class Php extends Inspector
     }
 
     /**
+     * @throws InvalidXpathException
      * @return Inspector
      */
     public function inspect()
     {
         $this->domXpath = new DOMXPath($this->dom);
         foreach ($this->patterns as $pattern) {
-            foreach ($this->simpleXml->xpath($pattern['xpath']) as $node) {
+            $xpath = $this->simpleXml->xpath($pattern['xpath']);
+            if (!is_array($xpath)) {
+                throw new InvalidXpathException(sprintf('Invalid XPath "%s" given.', $pattern['xpath']));
+            }
+            foreach ($xpath as $node) {
                 $this->report->addIssue($this->file->getRealPath(), $this->prepareIssue($pattern['xpath'], $node, $pattern));
             }
         }

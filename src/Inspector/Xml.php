@@ -3,6 +3,7 @@
 namespace Ecg\Magniffer\Inspector;
 
 use Ecg\Magniffer\Inspector,
+    Ecg\Magniffer\Exception\InvalidXpathException,
     Ecg\Magniffer\Report,
     DOMDocument,
     DOMXPath;
@@ -48,13 +49,18 @@ class Xml extends Inspector
     }
 
     /**
+     * @throws InvalidXpathException
      * @return Inspector
      */
     public function inspect()
     {
         $this->domXpath = new DOMXPath($this->dom);
         foreach ($this->patterns as $pattern) {
-            foreach ($this->domXpath->query($pattern['xpath']) as $node) {
+            $xpath = $this->domXpath->query($pattern['xpath']);
+            if (!$xpath) {
+                throw new InvalidXpathException(sprintf('Invalid XPath "%s" given.', $pattern['xpath']));
+            }
+            foreach ($xpath as $node) {
                 $this->report->addIssue($this->file->getRealPath(), array(
                     'line'      => $node->getLineNo(),
                     'source'    => $node->C14N(),
