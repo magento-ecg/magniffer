@@ -107,7 +107,6 @@ class Php extends Inspector
                 array('...', trim($this->contentArray[$issue['parent_end'] - 1]))
             );
         }
-        $issue['source'] = implode('', $issue['source']);
         return $issue;
     }
 

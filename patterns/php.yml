@@ -72,3 +72,9 @@
       )
     ]
   inspector : php
+-
+  message   : Security Issues: Missing _isAllowed() ACL Method in Backend Controller
+  xpath     : >
+    //node:Stmt_Class/subNode:extends/node:Name/subNode:parts//scalar:string[text() = "Mage_Adminhtml_Controller_Action"]
+    [count(//node:Stmt_ClassMethod/subNode:name[scalar:string="_isAllowed"]) = 0]
+  inspector : php

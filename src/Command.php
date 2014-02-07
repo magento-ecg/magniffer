@@ -20,7 +20,8 @@ class Command extends SymfonyCommand
         $this->setName('mgf')
             ->setDescription('Magniffer Code Inspection Tool')
             ->addArgument('path', InputArgument::REQUIRED, 'Path to code')
-            ->addOption('patterns-dir', null, InputOption::VALUE_OPTIONAL, 'Path to patterns directory', __DIR__ . '/../' . 'patterns');
+            ->addOption('patterns-dir', null, InputOption::VALUE_OPTIONAL, 'Path to patterns directory', __DIR__ . '/../' . 'patterns')
+            ->addOption('show-source', null, InputOption::VALUE_NONE, 'Show source code snippet in the report');
     }
 
     /**
@@ -63,7 +64,7 @@ class Command extends SymfonyCommand
      */
     public function execute(InputInterface $input, OutputInterface $output)
     {
-        $report    = new Report();
+        $report    = new Report(array('show-source' => $input->getOption('show-source')));
         $magniffer = new Magniffer($this->getFileIterator($input->getArgument('path'), array('php', 'xml')));
         $patterns  = $this->preparePatterns($input->getOption('patterns-dir'));
 
