@@ -51,7 +51,7 @@
   inspector : php
 -
   message   : Empty Entities: Empty Method
-  xpath     : //node:Stmt_ClassMethod[count(subNode:stmts/scalar:array/*) = 0]/subNode:name/scalar:string
+  xpath     : //node:Stmt_ClassMethod[subNode:stmts/scalar:array and count(subNode:stmts/scalar:array/*) = 0]/subNode:name/scalar:string
   inspector : php
 -
   message   : Expression Issues: Expression is Always True
