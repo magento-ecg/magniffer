@@ -47,7 +47,7 @@
   inspector : php
 -
   message   : Empty Entities: Empty Class
-  xpath     : //node:Stmt_Class[count(subNode:stmts/scalar:array/*) = 0]/subNode:name/scalar:string
+  xpath     : //node:Stmt_Class[count(subNode:stmts/scalar:array/*) = 0]/subNode:name[not(contains(scalar:string, 'Helper_Data'))]/scalar:string
   inspector : php
 -
   message   : Empty Entities: Empty Method
