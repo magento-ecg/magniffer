@@ -15,10 +15,10 @@
     },
     "require": {
         "php": ">=5.4",
-        "nikic/php-parser": "0.9.*@dev",
-        "symfony/console": "2.4.*@dev",
-        "symfony/finder": "2.4.*@dev",
-        "symfony/yaml": "2.4.*@dev"
+        "nikic/php-parser": "1.0.*@dev",
+        "symfony/console": "2.7.*@dev",
+        "symfony/finder": "2.6.*@dev",
+        "symfony/yaml": "2.7.*@dev"
     },
     "autoload": {
         "classmap": [

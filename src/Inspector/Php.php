@@ -7,9 +7,7 @@ use Ecg\Magniffer\Inspector,
     Ecg\Magniffer\Report,
     DOMDocument,
     DOMXPath,
-    PHPParser_Lexer,
-    PHPParser_Parser,
-    PHPParser_Serializer_XML,
+    PhpParser,
     SimpleXMLElement;
 
 class Php extends Inspector
@@ -20,12 +18,12 @@ class Php extends Inspector
     protected $simpleXml;
 
     /**
-     * @var PHPParser_Parser
+     * @var PhpParser\Parser
      */
     protected $parser;
 
     /**
-     * @var PHPParser_Serializer_XML
+     * @var PhpParser\Serializer\XML;
      */
     protected $serializer;
 
@@ -47,8 +45,8 @@ class Php extends Inspector
     {
         parent::__construct($patterns, $report);
         $this->dom        = new DOMDocument();
-        $this->parser     = new PHPParser_Parser(new PHPParser_Lexer());
-        $this->serializer = new PHPParser_Serializer_XML();
+        $this->parser     = new PhpParser\Parser(new PhpParser\Lexer\Emulative);
+        $this->serializer = new PhpParser\Serializer\XML;
     }
 
     /**
