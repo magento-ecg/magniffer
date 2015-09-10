@@ -78,3 +78,26 @@
     //node:Stmt_Class/subNode:extends/node:Name/subNode:parts//scalar:string[text() = "Mage_Adminhtml_Controller_Action"]
     [count(//node:Stmt_ClassMethod/subNode:name[scalar:string="_isAllowed"]) = 0]
   inspector : php
+-
+  message   : Simple Model Load is Not Recommended, Replace Load With Reposotory Model
+  xpath     : >
+    //node:Expr_StaticCall/subNode:name[
+        scalar:string="getModel"
+    ]
+  inspector : php
+-
+  message   : Simple Model Load is Not Recommended, Replace Load With Reposotory Model [objectName]Repository->get
+  xpath     : >
+    //node:Expr_Assign/subNode:expr/node:Expr_MethodCall[
+        subNode:name/scalar:string ="load"
+    ]/subNode:var/node:Expr_MethodCall/subNode:name[
+        scalar:string="create"
+    ]
+  inspector : php
+-
+  message   : Simple getCollection Method is not Recommended, Replace with  [objectName]Repository->getList
+  xpath     : >
+    //node:Expr_MethodCall[
+        subNode:name/scalar:string ="getCollection"
+    ]
+  inspector : php
