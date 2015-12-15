@@ -23,9 +23,7 @@ Installation
 With [Composer](http://getcomposer.org/):
 
 ```
-"require": {
-  "magento-ecg/magniffer": "dev-master"
-}
+composer require --dev magento-ecg/magniffer
 ```
 
 Basic Usage
