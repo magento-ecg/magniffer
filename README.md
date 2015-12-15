@@ -30,7 +30,7 @@ Basic Usage
 ============
 
 ```
-mgf /path/to/files
+$ php ./vendor/bin/mgf /path/to/files
 ```
 
 
