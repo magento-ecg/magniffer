@@ -21,6 +21,7 @@ class Command extends SymfonyCommand
             ->setDescription('Magniffer Code Inspection Tool')
             ->addArgument('path', InputArgument::REQUIRED, 'Path to code')
             ->addOption('patterns-dir', null, InputOption::VALUE_OPTIONAL, 'Path to patterns directory', __DIR__ . '/../' . 'patterns')
+            ->addOption('csv', null, InputOption::VALUE_NONE, 'Output as CSV')
             ->addOption('show-source', null, InputOption::VALUE_NONE, 'Show source code snippet in the report');
     }
 
@@ -72,6 +73,10 @@ class Command extends SymfonyCommand
             ->addInspector(new InspectorPhp($patterns['php'], $report))
             ->runInspection();
 
-        $report->render($output);
+        if ($input->getOption('csv')) {
+            $report->renderCsv($output);
+        } else {
+            $report->render($output);
+        }
     }
 }
