@@ -106,4 +106,27 @@ class Report
             $this->tableHelper->setRows(array());
         }
     }
+
+    public function renderCsv(OutputInterface $output) {
+        if (empty($this->issues)) {
+            return;
+        }
+
+        $this->config['displayed-columns']['file'] = 'File';
+        $output->writeln(implode(',', $this->config['displayed-columns']));
+
+        foreach ($this->issues as $file => $issues) {
+            foreach ($issues as $issue) {
+                $issueLine = array();
+                foreach ($this->config['displayed-columns'] as $columnKey => $column) {
+                    if ($columnKey == 'file') {
+                        $issueLine[] = $file;
+                    } else {
+                        $issueLine[] = $issue[$columnKey];
+                    }
+                }
+                $output->writeln(implode(',', $issueLine));
+            }
+        }
+    }
 }
